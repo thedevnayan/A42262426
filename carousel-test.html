@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carousel Test</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        
+        .carousel-container {
+            max-width: 500px;
+            margin: 30px auto;
+            position: relative;
+        }
+        
+        .carousel-wrapper {
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+        
+        .carousel-slide {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+        
+        .carousel-slide.active {
+            display: block;
+        }
+        
+        .photo-frame {
+            position: relative;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 20px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .carousel-image {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .carousel-image:hover {
+            transform: scale(1.05);
+        }
+        
+        .photo-caption {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-top: 15px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            padding: 0 20px;
+        }
+        
+        .carousel-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            padding: 10px 15px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .carousel-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+        
+        .carousel-dots {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .dot.active {
+            background: #ff6b6b;
+            transform: scale(1.2);
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>Carousel Test</h1>
+    
+    <div class="carousel-container">
+        <div class="carousel-wrapper">
+            <div class="carousel-slide active">
+                <div class="photo-frame">
+                    <img src="https://via.placeholder.com/400x500/ff6b6b/ffffff?text=Photo+1" alt="Photo 1" class="carousel-image">
+                    <div class="photo-caption">This is photo 1 💕</div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="photo-frame">
+                    <img src="https://via.placeholder.com/400x500/48dbfb/ffffff?text=Photo+2" alt="Photo 2" class="carousel-image">
+                    <div class="photo-caption">This is photo 2 ✨</div>
+                </div>
+            </div>
+            <div class="carousel-slide">
+                <div class="photo-frame">
+                    <img src="https://via.placeholder.com/400x500/feca57/ffffff?text=Photo+3" alt="Photo 3" class="carousel-image">
+                    <div class="photo-caption">This is photo 3 👀</div>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <button class="carousel-btn prev" onclick="changeSlide(-1)">❮</button>
+            <div class="carousel-dots">
+                <span class="dot active" onclick="currentSlide(1)"></span>
+                <span class="dot" onclick="currentSlide(2)"></span>
+                <span class="dot" onclick="currentSlide(3)"></span>
+            </div>
+            <button class="carousel-btn next" onclick="changeSlide(1)">❯</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlide = 0;
+        let slides = [];
+        let dots = [];
+        
+        function initializeCarousel() {
+            console.log('Initializing carousel...');
+            currentSlide = 0;
+            slides = document.querySelectorAll('.carousel-slide');
+            dots = document.querySelectorAll('.dot');
+            console.log('Found slides:', slides.length, 'Found dots:', dots.length);
+            showSlide(currentSlide);
+            startAutoSlide();
+        }
+        
+        function changeSlide(direction) {
+            currentSlide += direction;
+            
+            if (currentSlide >= slides.length) {
+                currentSlide = 0;
+            }
+            if (currentSlide < 0) {
+                currentSlide = slides.length - 1;
+            }
+            
+            showSlide(currentSlide);
+        }
+        
+        function currentSlide(slideIndex) {
+            currentSlide = slideIndex - 1;
+            showSlide(currentSlide);
+        }
+        
+        function showSlide(slideIndex) {
+            console.log('Showing slide:', slideIndex);
+            
+            // Hide all slides
+            slides.forEach(slide => {
+                slide.classList.remove('active');
+            });
+            
+            // Remove active class from all dots
+            dots.forEach(dot => {
+                dot.classList.remove('active');
+            });
+            
+            // Show current slide and activate corresponding dot
+            if (slides[slideIndex]) {
+                slides[slideIndex].classList.add('active');
+                console.log('Activated slide:', slideIndex);
+            }
+            if (dots[slideIndex]) {
+                dots[slideIndex].classList.add('active');
+                console.log('Activated dot:', slideIndex);
+            }
+        }
+        
+        function startAutoSlide() {
+            console.log('Starting auto slide...');
+            setInterval(() => {
+                changeSlide(1);
+            }, 4000); // Change slide every 4 seconds
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('load', function() {
+            initializeCarousel();
+        });
+        
+        // Make functions globally available
+        window.changeSlide = changeSlide;
+        window.currentSlide = currentSlide;
+    </script>
+</body>
+</html> 

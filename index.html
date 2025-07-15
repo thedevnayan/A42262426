@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Heart's Message 💕</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "sfabfa4dhc");
+</script>
+</head>
+<body>
+    <div class="container">
+        <!-- Landing Section -->
+        <section id="landing" class="section active">
+            <div class="stars"></div>
+            <div class="content">
+                <h1 class="title">Hey Beautiful! 💖</h1>
+                <p class="subtitle">I have something special to share with you...</p>
+                <button class="btn-primary" onclick="nextSection()">Click to Begin 💫</button>
+            </div>
+        </section>
+
+        <!-- Memory Section -->
+        <section id="memories" class="section">
+            <div class="content">
+                <h2 class="section-title">Our Beautiful Memories ✨</h2>
+                <div class="memory-cards">
+                    <div class="memory-card" data-memory="1">
+                        <div class="card-content">
+                            <h3>First Time We Met</h3>
+                            <p>That moment when our eyes first met...</p>
+                        </div>
+                    </div>
+                    <div class="memory-card" data-memory="2">
+                        <div class="card-content">
+                            <h3>Our Conversations</h3>
+                            <p>Every word you say makes my heart skip a beat</p>
+                        </div>
+                    </div>
+                    <div class="memory-card" data-memory="3">
+                        <div class="card-content">
+                            <h3>Your Smile</h3>
+                            <p>Your smile lights up my entire world</p>
+                        </div>
+                    </div>
+                </div>
+                <button class="btn-primary" onclick="nextSection()">Continue 💝</button>
+            </div>
+        </section>
+
+        <!-- Feelings Section -->
+        <section id="feelings" class="section">
+            <div class="content">
+                <h2 class="section-title">What I Feel For You 💕</h2>
+                <div class="feeling-text">
+                    <p class="typing-text">You know Aanchal, the first time I saw you — 5th May — you became my crush. I still remember every moment since then. I really loved the way you were acting after getting drunk  — every scene is still in my head.</p>
+                    <p class="typing-text">I don't know if you remember or not, but when you first called me 'Nayan', I felt so happy… and honestly, a little shy too.</p>
+                    <p class="typing-text">It's funny, but I even made music inspired by it — do you want to listen to it sometime?</p>
+                    <p class="typing-text">Every time I see you, my heart races...</p>
+                    <p class="typing-text">Your voice is like music to my ears...</p>
+                    <p class="typing-text">I can't stop thinking about you...</p>
+                    <p class="typing-text">You make every day brighter...</p>
+                    <p class="typing-text">I've fallen deeply in love with you...</p>
+                </div>
+                <div class="heart-container">
+                    <div class="heart"></div>
+                </div>
+                <button class="btn-primary" onclick="nextSection()">My Question 💌</button>
+            </div>
+        </section>
+
+        <!-- Question Section -->
+        <section id="question" class="section">
+            <div class="content">
+                <h2 class="section-title">My Special Question 💝</h2>
+                <div class="question-box">
+                    <p class="question-text">Will you go on a date with me?</p>
+                    <div class="answer-buttons">
+                        <button class="btn-yes" onclick="showYes()">Yes 💖</button>
+                        <button class="btn-no" onclick="moveNoButton()">No 😢</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Yes Response -->
+        <section id="yes-response" class="section">
+            <div class="content">
+                <h2 class="section-title">Yay! 🎉</h2>
+                
+                <!-- Celebration Animation -->
+                <div class="celebration">
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                    <div class="confetti"></div>
+                </div>
+                
+                <!-- Success Message -->
+                <div class="success-message">
+                    <div class="success-icon">💖</div>
+                    <p class="response-text">I'm so happy! 💕</p>
+                    <p class="response-text">I promise to make it the most special date ever!</p>
+                    <p class="response-text">Thank you for making me the happiest person! 💖</p>
+                </div>
+                
+                <!-- Action Buttons -->
+                <div class="celebration-buttons">
+                    <button class="btn-primary" onclick="restart()">Start Over 💫</button>
+                    <button class="btn-secondary" onclick="shareResponse()">Share This Moment 📱</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <!-- Firebase Config -->
+    <script src="firebase-config.js"></script>
+    
+    <!-- Main Script -->
+    <script src="script.js"></script>
+    
+    <!-- Error Handler -->
+    <script>
+        window.addEventListener('error', function(e) {
+            console.error('Global error:', e.error);
+        });
+    </script>
+</body>
+</html> 

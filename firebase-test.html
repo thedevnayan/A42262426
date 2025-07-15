@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Firebase Test</title>
+</head>
+<body>
+    <h1>Firebase Test</h1>
+    <button onclick="testFirebase()">Test Firebase</button>
+    <div id="result"></div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.0.0/firebase-firestore-compat.js"></script>
+    
+    <script>
+        // Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyApX9kiQDfdOAHFlHd-Qvk-owdo50wm2R0",
+            authDomain: "confession-c9074.firebaseapp.com",
+            projectId: "confession-c9074",
+            storageBucket: "confession-c9074.firebasestorage.app",
+            messagingSenderId: "707113951953",
+            appId: "1:707113951953:web:84f70ddea9b8725368dbf0",
+            measurementId: "G-0P1LG22GQY"
+        };
+
+        // Initialize Firebase
+        try {
+            firebase.initializeApp(firebaseConfig);
+            const db = firebase.firestore();
+            console.log('✅ Firebase initialized successfully');
+            
+            window.testFirebase = async function() {
+                try {
+                    const testData = {
+                        test: true,
+                        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                        message: 'Firebase is working!'
+                    };
+                    
+                    await db.collection('test').add(testData);
+                    document.getElementById('result').innerHTML = '<p style="color: green;">✅ Firebase is working! Check console for details.</p>';
+                    console.log('✅ Test data saved to Firebase');
+                } catch (error) {
+                    document.getElementById('result').innerHTML = '<p style="color: red;">❌ Firebase error: ' + error.message + '</p>';
+                    console.error('❌ Firebase test error:', error);
+                }
+            };
+            
+        } catch (error) {
+            console.error('❌ Firebase initialization error:', error);
+            document.getElementById('result').innerHTML = '<p style="color: red;">❌ Firebase initialization failed: ' + error.message + '</p>';
+        }
+    </script>
+</body>
+</html> 

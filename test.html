@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Page</title>
+    <style>
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            font-family: Arial, sans-serif;
+            color: white;
+            text-align: center;
+            padding: 50px;
+        }
+        .section {
+            display: none;
+        }
+        .section.active {
+            display: block;
+        }
+        button {
+            background: #ff6b6b;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            cursor: pointer;
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div id="section1" class="section active">
+        <h1>Section 1</h1>
+        <p>This is the first section</p>
+        <button onclick="nextSection()">Next Section</button>
+    </div>
+    
+    <div id="section2" class="section">
+        <h1>Section 2</h1>
+        <p>This is the second section</p>
+        <button onclick="nextSection()">Next Section</button>
+    </div>
+    
+    <div id="section3" class="section">
+        <h1>Section 3</h1>
+        <p>This is the third section</p>
+        <button onclick="restart()">Start Over</button>
+    </div>
+
+    <script>
+        let currentSection = 0;
+        const sections = ['section1', 'section2', 'section3'];
+        
+        function nextSection() {
+            console.log('nextSection called, currentSection:', currentSection);
+            
+            if (currentSection < sections.length - 1) {
+                // Hide current section
+                document.getElementById(sections[currentSection]).classList.remove('active');
+                
+                // Show next section
+                currentSection++;
+                document.getElementById(sections[currentSection]).classList.add('active');
+                
+                console.log('Moved to section:', sections[currentSection]);
+            } else {
+                console.log('Already at last section');
+            }
+        }
+        
+        function restart() {
+            // Hide all sections
+            sections.forEach(section => {
+                document.getElementById(section).classList.remove('active');
+            });
+            
+            // Reset to first section
+            currentSection = 0;
+            document.getElementById(sections[currentSection]).classList.add('active');
+        }
+        
+        // Make functions globally available
+        window.nextSection = nextSection;
+        window.restart = restart;
+    </script>
+</body>
+</html> 
